@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style th:if="${rangeToShow.id == 1}">
+        body {
+            background-color: #74cc5b;
+        }
+    </style>
+    <style th:if="${rangeToShow.id == 2}">
+        body {
+            background-color: #cc6577;
+        }
+    </style>
+    <style th:if="${rangeToShow.id == 3}">
+        body {
+            background-color: #6b8ecc;
+        }
+    </style>
+    <style th:if="${rangeToShow.id == 4}">
+        body {
+            background-color: #51cc81;
+        }
+    </style>
+    <style th:if="${rangeToShow.id > 4}">
+        body {
+            background-color: #cc93c4;
+        }
+    </style>
+    <title>Pasmo</title>
+</head>
+<body style="margin-left:20%; margin-right: 20%">
+<br/>
+<h1 th:text="|${rangeToShow.name}|"></h1>
+<h3 th:text="|${rangeToShow.description}|"></h3>
+<br/>
+<h2>Wszytkie góry tego pasma to:</h2>
+<h3>
+    <ul th:each="mount: ${mountsOfRange}">
+        <li><a th:href="|/mount?id=${mount.id}|"
+               th:text="|${mount.name}, wysokość ${mount.altitude} m n.p.m.,    lajków:  ${mount.likes}|"/></li>
+    </ul>
+</h3>
+<br/>
+
+
+<button type="button" class="btn btn-danger">
+    <a th:href="|/range/delete?id=${rangeToShow.id}|">Usuń pasmo</a>
+</button>
+<button type="button" class="btn btn-secondary">
+    <a th:href="|/range/correct?id=${rangeToShow.id}|">Popraw pasmo</a>
+</button>
+<button type="button" class="btn btn-dark">
+    <a href="/mounts/add">Dodaj nową górę</a>
+</button>
+<br/>
+<br/>
+<button type="button" class="btn btn-warning">
+    <a href="/ranges">Skocz do listy pasm</a>
+</button>
+<button type="button" class="btn btn-warning">
+    <a href="/mounts">Skocz do listy gór</a>
+</button>
+<button type="button" class="btn btn-light">
+    <a href="/">Powrót na stronę główną</a>
+</button>
+
+</body>
+</html>

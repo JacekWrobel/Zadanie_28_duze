@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #cccccc;
+        }
+    </style>
+
+    <title>Góry</title>
+</head>
+<body style="margin:17%">
+<h1 style="align-content: center">Korygujesz górę</h1>
+<br/>
+
+<form action="/mount/correct" method="post" th:object="${mountToCorrect}">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">Name</label>
+            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="nazwa"
+                   th:field="*{name}"/>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput2">Altitude</label>
+            <input type="number" class="form-control mb-2" id="inlineFormInput2" placeholder="wysokość  n.p.m."
+                   th:field="*{altitude}"/>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput3">description</label>
+            <textarea type="text" class="form-control mb-2" id="inlineFormInput3" placeholder="wpisz swój opis"
+                      th:field="*{description}"/>
+            <!--                    <input type="text" class="form-control mb-2" id="inlineFormInput3" placeholder="opis"-->
+            <!--                           th:field="*{description}"/>-->
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput4">img</label>
+            <input type="text" class="form-control mb-2" id="inlineFormInput4" placeholder="link do obrazka"
+                   th:field="*{img}"/>
+        </div>
+
+        <input type="hidden" th:value="${mountToCorrect.id}" th:field="*{id}"/>
+        <input type="hidden" th:value="${mountToCorrect.likes}" th:field="*{likes}"/>
+
+        <div class="col-auto">
+            <label class="sr-only">Name</label>
+            <select th:selected="${mountToCorrect.range.name}"
+            <select class="custom-select mb-2" th:field="*{range}">
+                <option th:each="range: ${ranges}"
+                        th:value="${range.id}"
+                        th:text="${range.name}"></option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success">Zatwierdź poprawki</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

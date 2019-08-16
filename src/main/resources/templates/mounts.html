@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #ccc38f;
+        }
+    </style>
+    <title>Góry</title>
+</head>
+<body style="margin-left:19%; margin-right: 19%">
+
+<br/>
+<h1>Wszytkie znane góry:</h1>
+<br/>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">
+            <a href="/mounts?sort=name">nazwa</a>
+        </th>
+        <th scope="col">
+            <a href="/mounts?sort=altitude">wysokość</a>
+        </th>
+        <th scope="col">
+            <a href="/mounts?sort=range">pasmo</a>
+        </th>
+        <th scope="col">
+            <a href="/mounts?sort=likes">lajki</a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mount:${mounts}">
+        <td><a th:href="|/mount?id=${mount.id}|" th:text="|${mount.name}|"></a></td>
+        <td th:text="|${mount.altitude} m n.p.m.|"></td>
+        <td><a th:href="|/range?id=${mount.range.id}|" th:text="|${mount.range.name}|"></a></td>
+        <td th:text="|${mount.likes}|"></td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<button type="button" class="btn btn-dark">
+    <a href="/mounts/add">Dodaj nową górę</a>
+</button>
+<button type="button" class="btn btn-dark">
+    <a href="/range/add">Dodaj nowe pasmo</a>
+</button>
+<button type="button" class="btn btn-warning">
+    <a href="/ranges">Skocz do listy pasm</a>
+</button>
+<button type="button" class="btn btn-warning">
+    <a href="/mounts">Skocz do listy gór</a>
+</button>
+<button type="button" class="btn btn-light">
+    <a href="/">Powrót na stronę główną</a>
+</button>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #cc9eb9;
+        }
+    </style>
+
+    <title>Korekta Pasma</title>
+</head>
+<body style="margin:20%">
+<h1 style="align-content: center">Korygujesz pasmo</h1>
+<br/>
+<br/>
+
+<form action="/range/correct" method="post" th:object="${rangeToCorrect}">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">Name</label>
+            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="nazwa"
+                   th:field="*{name}"/>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput3">description</label>
+            <textarea type="text" class="form-control mb-2" id="inlineFormInput3" placeholder="wpisz swój opis"
+                      th:field="*{description}"/>
+        </div>
+        <input type="hidden" th:value="${rangeToCorrect.id}" th:field="*{id}"/>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-2">Zatwierdź poprawki</button>
+        </div>
+    </div>
+</form>
+<br/>
+<br/>
+<button type="button" class="btn btn-warning">
+    <a href="/ranges">Skocz do listy pasm</a>
+</button>
+<button type="button" class="btn btn-warning">
+    <a href="/mounts">Skocz do listy gór</a>
+</button>
+<button type="button" class="btn btn-light">
+    <a href="/">Powrót na stronę główną</a>
+</button>
+
+</body>
+</html>

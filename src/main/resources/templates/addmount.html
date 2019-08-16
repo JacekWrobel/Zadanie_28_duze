@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style >
+        body {
+            background-color: #ccc38f;
+        }
+    </style>
+
+    <title>Góry</title>
+</head>
+<body style="margin: 12%">
+<h1 th:text="|${Tekst}|"></h1>
+
+<h1 style="align-content: center">Dodajesz nową górę</h1>
+
+
+        <form action="/mounts/add" method="post" th:object="${newMount}">
+            <div class="form-row align-items-center" >
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput">Name</label>
+                    <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="nazwa"
+                           th:field="*{name}"/>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput2">Name</label>
+                    <input type="number" class="form-control mb-2" id="inlineFormInput2" placeholder="wysokość  n.p.m."
+                           th:field="*{altitude}"/>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput3">Name</label>
+                    <textarea type="text" class="form-control mb-2" id="inlineFormInput3" placeholder="wpisz swój opis"
+                           th:field="*{description}"/>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput4">Name</label>
+                    <input type="text" class="form-control mb-2" id="inlineFormInput4" placeholder="link do obrazka"
+                           th:field="*{img}"/>
+                </div>
+
+                <div class="col-auto">
+                    <label class="sr-only">Name</label>
+                    <select class="custom-select mb-2" th:field="*{range}">
+                        <option th:each="range: ${ranges}"
+                                th:value="${range.id}"
+                                th:text="${range.name}"></option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-success mb-2">Dodaj</button>
+                </div>
+            </div>
+        </form>
+<br/>
+<div style="margin-left: 17%">
+<button type="button" class="btn btn-dark">
+    <a href="/range/add">Dodaj nowe pasmo</a>
+</button>
+<button type="button" class="btn btn-warning">
+    <a href="/ranges">Skocz do listy pasm</a>
+</button>
+<button type="button" class="btn btn-warning">
+    <a href="/mounts">Skocz do listy gór</a>
+</button>
+<button type="button" class="btn btn-light">
+    <a href="/">Powrót na stronę główną</a>
+</button>
+</div>
+
+</body>
+</html>

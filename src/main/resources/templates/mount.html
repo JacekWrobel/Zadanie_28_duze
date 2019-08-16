@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #cccccc;
+        }
+
+        .container {
+            border: 3px solid blue;
+            padding: 20px 40px 40px;
+            max-width: 9000px;
+
+        &
+        __image {
+            width: 250px;
+            margin: 30px 30px 30px 0;
+            float: left;
+        }
+
+        &
+        __text {
+            /*display: inline;*/
+        }
+
+        }
+
+    </style>
+
+    <title>Góra</title>
+</head>
+<body style="margin-left:20%; margin-right: 20%">
+<br/>
+<h1 th:text="|${mountToShow.name}|"></h1>
+<br/>
+<h2 th:text="|wysokość: ${mountToShow.altitude} m n.p.m.|"></h2>
+<h2 th:text="|pasmo górskie: ${mountToShow.range.name}|"></h2>
+<h2 th:text="|zdobyte lajki: ${mountToShow.likes}|">
+</h2>
+<button class="btn btn-secondary btn-lg">
+    <a th:href="|/mount/addLike?id=${mountToShow.id}|">Daj lajka!</a>
+</button>
+<br/>
+
+<div class="container">
+    <img class="container__image" th:src="${mountToShow.img}" style="width: 300px"/>
+    <div class="container__text">
+        <p th:text="|${mountToShow.description}|"></p>
+    </div>
+</div>
+
+<button type="button" class="btn btn-danger">
+    <a th:href="|/delete?id=${mountToShow.id}|">Usuń górę</a>
+</button>
+<button type="button" class="btn btn-secondary">
+    <a th:href="|/correct?id=${mountToShow.id}|">Popraw górę</a>
+</button>
+<button type="button" class="btn btn-warning">
+    <a href="/mounts">Skocz do listy gór</a>
+</button>
+<button type="button" class="btn btn-light">
+    <a href="/">Powrót na stronę główną</a>
+</button>
+
+
+</body>
+</html>
